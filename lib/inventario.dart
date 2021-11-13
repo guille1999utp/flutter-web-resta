@@ -10,39 +10,26 @@ class Inventario extends StatefulWidget {
 }
 
 class _InventarioState extends State<Inventario> {
-  bool asTabs = false;
+
 
   List<Productos> produc = [
-    Productos(id: "1", producto: "chorizo", cantidad: 1, precios: 44720),
-    Productos(id: "2", producto: "tomate", cantidad: 6, precios: 55000),
-    Productos(id: "3", producto: "papas", cantidad: 4, precios: 48570),
-    Productos(id: "4", producto: "mazorca", cantidad: 6, precios: 45500),
-    Productos(id: "5", producto: "aguacate", cantidad: 9, precios: 71000),
-    Productos(id: "6", producto: "spaguetti", cantidad: 8, precios: 46545),
-    Productos(id: "7", producto: "chimpiñones", cantidad: 2, precios: 56468),
-    Productos(id: "8", producto: "mostaza", cantidad: 3, precios: 75247),
-    Productos(id: "9", producto: "marizcos", cantidad: 5, precios: 24824),
-    Productos(id: "10", producto: "cebolla", cantidad: 6, precios: 34535),
-    Productos(
-        id: "11", producto: "sopa de guineos", cantidad: 4, precios: 78125),
-    Productos(id: "12", producto: "platano", cantidad: 7, precios: 97823),
-    Productos(id: "13", producto: "manzana", cantidad: 7, precios: 86345),
-    Productos(id: "14", producto: "salchichon", cantidad: 2, precios: 64327),
-    Productos(
-        id: "15", producto: "carne de cerdo", cantidad: 3, precios: 54384),
-    Productos(id: "16", producto: "cafe", cantidad: 1, precios: 34554),
+    Productos(id: "1", producto: "chorizo", cantidad: 1, precios: 44720), 
   ];
   Widget _swath() {
+    var asTabs;
     return Switch(
+      key: asTabs,
       activeColor: Colors.white,
       value: asTabs,
-      onChanged: (value) {
+      onChanged: (bool Newvalue) {
         setState(() {
-          asTabs = value;
+          asTabs = Newvalue;
         });
       },
     );
   }
+
+
 
   final textcontroller1 = TextEditingController();
   final textcontroller2 = TextEditingController();
@@ -303,13 +290,15 @@ void anadir(String name, context, activas) {
 }
 
 class Productos {
+  String categoria;
   String id;
   String producto;
   int cantidad;
   int precios;
-  Productos({this.id, this.producto, this.cantidad, this.precios});
+  Productos({this.categoria,this.id, this.producto, this.cantidad, this.precios});
   factory Productos.fromMap(Map<String, dynamic> obj) {
     return Productos(
+        categoria: obj['categoria'],
         id: obj['id'],
         producto: obj['producto'],
         cantidad: obj['cantidad'],

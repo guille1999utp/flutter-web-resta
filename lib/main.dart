@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurante/categorias.dart';
 
 import 'package:restaurante/inicio.dart';
 import 'package:restaurante/inventario.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         'inicio': (BuildContext context) => Inicio(),
         'inventario': (BuildContext context) => Inventario(),
+        'categorias': (BuildContext context) => Categorias(),
       },
     );
   }

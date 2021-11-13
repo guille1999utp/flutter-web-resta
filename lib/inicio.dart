@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurante/categorias.dart';
 
-import 'package:restaurante/inventario.dart';
 import 'package:restaurante/perdida.dart';
 
 import 'package:restaurante/recetario.dart';
@@ -15,7 +15,7 @@ class Inicio extends StatelessWidget {
     new Lista(
         nombre: "Inventario",
         icono: Icon(Icons.event_available),
-        rutas: (BuildContext context) => Inventario()),
+        rutas: (BuildContext context) => Categorias()),
     new Lista(
         nombre: "Recetarios",
         icono: Icon(Icons.cake_outlined),
