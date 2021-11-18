@@ -38,6 +38,24 @@ class _InventarioState extends State<Inventario> {
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
+        appBar: AppBar(
+          elevation: 20.0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: Text(
+              'Inventario',
+              style:  TextStyle( 
+                          fontSize: 25.0, 
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'GloriaHallelujah',
+                        )
+                        ,
+            ),
+          ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               return showDialog(
@@ -141,20 +159,7 @@ class _InventarioState extends State<Inventario> {
               color: Colors.white,
               size: 50,
             )),
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          title: Center(
-            child: Text(
-              'Inventario',
-              style: TextStyle(fontSize: 25),
-            ),
-          ),
-        ),
+        
         body: ListView.builder(
             itemCount: produc.length,
             itemBuilder: (context, index) {

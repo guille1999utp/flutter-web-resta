@@ -11,12 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: "inicio",
+      initialRoute: "categorias",
       routes: <String, WidgetBuilder>{
         'inicio': (BuildContext context) => Inicio(),
         'inventario': (BuildContext context) => Inventario(),
         'categorias': (BuildContext context) => Categorias(),
+        
       },
     );
   }

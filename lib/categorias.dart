@@ -1,15 +1,17 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:restaurante/inventario.dart';
+
 
 class Categoria {
   String nombre;
   String id;
-  Categoria({this.nombre,this.id,});
+  String imagen;
+  Categoria({this.nombre,this.id, this.imagen});
   factory Categoria.fromMap(Map<String, dynamic> obj) {
     return Categoria(
         nombre: obj['nombre'],
         id: obj['id'],
+        imagen: obj['imagen'],
     );
   }
 }
@@ -22,23 +24,26 @@ class Categorias extends StatefulWidget {
 class _CategoriasState extends State<Categorias> {
   
   List<Categoria> categorias = [
-    Categoria(id: "1", nombre: "Licores"),
-    Categoria(id: "2", nombre: "Carnes"),
-    Categoria(id: "3", nombre: "Embutidos"),
-    Categoria(id: "4", nombre: "Condimentos"),
-    Categoria(id: "5", nombre: "Cereales"),
-    Categoria(id: "6", nombre: "Lacteos"),
-    Categoria(id: "7", nombre: "Verduras"),
-    Categoria(id: "8", nombre: "Aceites"),
-    Categoria(id: "9", nombre: "Bebidas"), 
+    Categoria(id: "1", nombre: "Licores", imagen: 'assets/Licores.png' ),
+    Categoria(id: "2", nombre: "Carnes",imagen: 'assets/Carnes.jpg'),
+    Categoria(id: "3", nombre: "Embutidos",imagen: 'assets/Embutidos.jpg'),
+    Categoria(id: "4", nombre: "Condimentos",imagen: 'assets/Condimentos.png'),
+    Categoria(id: "5", nombre: "Cereales",imagen: 'assets/Cereales.jpg'),
+    Categoria(id: "6", nombre: "Lacteos",imagen: 'assets/Lacteos.jpg'),
+    Categoria(id: "7", nombre: "Verduras",imagen: 'assets/Verduras.jpg'),
+    Categoria(id: "8", nombre: "Aceites",imagen: 'assets/Aceites.jpg'),
+    Categoria(id: "9", nombre: "Bebidas",imagen: 'assets/Bebidas.jpg'), 
+    
   ];
   
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromRGBO(117, 79, 1, 1),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () {
@@ -46,34 +51,55 @@ class _CategoriasState extends State<Categorias> {
             },
           ),
           title: Center(
-            child: Text(
-              'Inventario',
-              style: TextStyle(fontSize: 25),
-            ),
+            child:  Text(
+                       'Inventario',
+                        style: TextStyle( 
+                          fontSize: 30.0, 
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'GloriaHallelujah',
+                        ),
+                        )
           ),
         ),
-        body: ListView.builder(
-            itemCount: categorias.length,
-            itemBuilder: (context, index) {
-              return Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Color.fromRGBO(241, 236, 235, 1), width: 1)),
-                  child: ListTile(
-                    onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (BuildContext context) => Inventario()));
-                },
-                    leading: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: Colors.grey,
-                    ),
-                    title: Text(
-                      categorias[index].nombre,
-                      style: TextStyle(fontSize: 20),
+           body: Container(
+             color: Color.fromRGBO(216, 193, 85, 1),
+             child: GridView.count(
+               crossAxisCount:3,
+               padding:EdgeInsets.all(20),
+               mainAxisSpacing: 20,
+               children: List.generate(categorias.length,(index){
+                return Container(
+                  decoration: BoxDecoration(
+                    borderRadius:BorderRadius.circular(20.0),
+                  ),
+                  margin: EdgeInsets.all(20),
+                    child:Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius:BorderRadius.circular(150.0),
+                          child: Image.asset(
+                            categorias[index].imagen,
+                            fit: BoxFit.cover,
+                            height: 500,
+                            width: 500,
                     ),
                   ),
-                );},
-              )
+                        Text(
+                          categorias[index].nombre,
+                          style: TextStyle( 
+                            fontSize: 25.0, 
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'GloriaHallelujah',
+                          ),
+                          )
+                      ],
+                    ),
+                  
+
+                );
+
+               }),
+               ),
+           ),
             ),
       );}}
